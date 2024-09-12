@@ -1,0 +1,36 @@
+{
+  "name": "@oneiro/server-context",
+  "version": "0.0.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/oneirogroup/server-context.git"
+  },
+  "type": "module",
+  "exports": {
+    ".": {
+      "import": "./build/server-context.js",
+      "require": "./build/server-context.js",
+      "types": "./build/server-context.d.ts"
+    }
+  },
+  "main": "build/server-context.js",
+  "module": "build/server-context.js",
+  "types": "build/server-context.d.ts",
+  "files": [
+    "build",
+    "src"
+  ],
+  "scripts": {
+    "build": "vite build --config vite.config.ts",
+    "test": "vitest"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react-swc": "^3.7.0",
+    "typescript": "5.4.2",
+    "vite": "^5.4.4",
+    "vite-plugin-dts": "^4.2.1",
+    "vite-tsconfig-paths": "^5.0.1",
+    "vitest": "^2.0.5"
+  },
+  "packageManager": "yarn@4.3.1"
+}
