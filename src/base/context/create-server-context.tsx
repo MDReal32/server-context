@@ -1,7 +1,7 @@
 import { FC, PropsWithChildren, ReactNode } from "react";
 import "server-only";
 
-import { LocalStorage } from "../utils/local-storage";
+import { LocalStorage } from "@/base/utils/local-storage";
 
 export type CreateContextInfer<T> = T extends { get: infer G extends (...args: any[]) => any }
   ? ReturnType<G>["params"]

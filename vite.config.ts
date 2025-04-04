@@ -1,4 +1,3 @@
-/// <reference types="vitest" />
 import { defineConfig } from "vite";
 import dtsPlugin from "vite-plugin-dts";
 import tsconfigPaths from "vite-tsconfig-paths";
@@ -14,18 +13,14 @@ export default defineConfig({
     ssr: true,
     sourcemap: true,
     lib: {
-      entry: { "server-context": "src/main.ts" },
+      entry: { "server-context": "src/main.ts", "server-context.zod": "src/zod/main.ts" },
       name: "Server Context",
       formats: ["es"]
     },
     rollupOptions: {
       output: {
-        chunkFileNames: "chunks/[name].[hash].js"
+        chunkFileNames: "chunks/[hash].js"
       }
     }
-  },
-  test: {
-    environment: "jsdom",
-    setupFiles: ["./tests/vitest.setup.js"]
   }
 });

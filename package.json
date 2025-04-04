@@ -1,16 +1,21 @@
 {
-  "name": "@oneiro/server-context",
-  "version": "0.0.0",
+  "name": "nextjs-server-context",
+  "version": "1.0.1",
   "repository": {
     "type": "git",
-    "url": "https://github.com/oneirogroup/server-context.git"
+    "url": "https://github.com/MDReal32/server-context.git"
   },
   "type": "module",
   "exports": {
     ".": {
+      "types": "./build/server-context.d.ts",
       "import": "./build/server-context.js",
-      "require": "./build/server-context.js",
-      "types": "./build/server-context.d.ts"
+      "require": "./build/server-context.js"
+    },
+    "./zod": {
+      "types": "./build/server-context.zod.d.ts",
+      "import": "./build/server-context.zod.js",
+      "require": "./build/server-context.zod.js"
     }
   },
   "main": "build/server-context.js",
@@ -22,21 +27,26 @@
   ],
   "scripts": {
     "build": "vite build --config vite.config.ts",
+    "prepublishOnly": "yarn build",
     "test": "vitest"
   },
   "dependencies": {
-    "react": "^18.3.1",
-    "zod": "^3.23.8"
+    "lodash.merge": "^4.6.2",
+    "react": "^19.1.0",
+    "zod": "^3.24.2"
   },
   "devDependencies": {
-    "@types/node": "^22.5.4",
-    "@types/react": "^18.3.3",
-    "@vitejs/plugin-react-swc": "^3.7.0",
-    "typescript": "5.4.2",
-    "vite": "^5.4.4",
-    "vite-plugin-dts": "^4.2.1",
-    "vite-tsconfig-paths": "^5.0.1",
-    "vitest": "^2.0.5"
+    "@trivago/prettier-plugin-sort-imports": "^5.2.2",
+    "@types/lodash.merge": "^4",
+    "@types/node": "^22.14.0",
+    "@types/react": "^19.1.0",
+    "@vitejs/plugin-react-swc": "^3.8.1",
+    "prettier": "^3.5.3",
+    "prettier-plugin-packagejson": "^2.5.10",
+    "typescript": "5.8.2",
+    "vite": "^6.2.5",
+    "vite-plugin-dts": "^4.5.3",
+    "vite-tsconfig-paths": "^5.1.4"
   },
-  "packageManager": "yarn@4.3.1"
+  "packageManager": "yarn@4.8.1"
 }

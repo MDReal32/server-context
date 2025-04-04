@@ -1,9 +1,10 @@
-import _ from "lodash";
+import merge from "lodash.merge";
+
 import type { ReactNode } from "react";
 import "server-only";
 import { type ZodRawShape, z } from "zod";
 
-import { Data, ServerContext, createServerContext } from "./create-server-context";
+import { Data, ServerContext, createServerContext } from "@/base/context/create-server-context";
 
 interface Options<TParams extends ZodRawShape, TSearchParams extends ZodRawShape> {
   params?: TParams;
@@ -64,12 +65,12 @@ export const createServerContextWithZod = <
     page: pageCtx,
     layout: layoutCtx,
     extend(newOptions, ...newSlots) {
-      return createServerContextWithZod(_.merge(options, newOptions), ...slots, ...newSlots);
+      return createServerContextWithZod(merge(options, newOptions), ...slots, ...newSlots);
     },
     get() {
       const layoutData = layoutCtx.get();
       const pageData = pageCtx.get();
-      return _.merge(layoutData || {}, pageData || {});
+      return merge(layoutData || {}, pageData || {});
     },
     getOrThrow() {
       const value = this.get();
