@@ -4,27 +4,9 @@ import type { ReactNode } from "react";
 import "server-only";
 import { type ZodRawShape, z } from "zod";
 
-import { Data, ServerContext, createServerContext } from "@/base/context/create-server-context";
-
-interface Options<TParams extends ZodRawShape, TSearchParams extends ZodRawShape> {
-  params?: TParams;
-  searchParamsShape?: TSearchParams;
-}
-
-interface ServerContextWithZod<TParams, TSearchParams extends object, TSlots extends readonly string[]> {
-  page: ServerContext<TParams, false, TSearchParams>;
-  layout: ServerContext<TParams, true, TSlots>;
-  extend<TNewParams extends ZodRawShape, TNewSearchParams extends ZodRawShape, TNewSlots extends readonly string[]>(
-    newOptions: Options<TNewParams, TNewSearchParams>,
-    ...newSlots: TNewSlots
-  ): ServerContextWithZod<
-    TParams & z.infer<z.ZodObject<TNewParams>>,
-    TSearchParams & z.infer<z.ZodObject<TNewSearchParams>>,
-    [...TSlots, ...TNewSlots]
-  >;
-  get(): Data<TParams, true, TSlots> & Data<TParams, false, TSearchParams>;
-  getOrThrow(): Data<TParams, true, TSlots> & Data<TParams, false, TSearchParams>;
-}
+import { createServerContext } from "../../base/context/create-server-context";
+import { ServerContext } from "../../types";
+import { CreateServerContextWithZodOptions, ServerContextWithZod } from "../types";
 
 export const createServerContextWithZod = <
   TParams extends ZodRawShape,
@@ -33,7 +15,7 @@ export const createServerContextWithZod = <
   TInternalParams extends z.infer<z.ZodObject<TParams>> = z.infer<z.ZodObject<TParams>>,
   TInternalSearchParams extends z.infer<z.ZodObject<TSearchParams>> = z.infer<z.ZodObject<TSearchParams>>
 >(
-  options: Options<TParams, TSearchParams> = {},
+  options: CreateServerContextWithZodOptions<TParams, TSearchParams> = {},
   ...slots: TSlots
 ): ServerContextWithZod<TInternalParams, TInternalSearchParams, TSlots> => {
   const paramsSchema = z.object(options.params || ({} as TParams));
