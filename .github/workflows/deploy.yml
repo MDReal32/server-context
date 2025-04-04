@@ -34,6 +34,6 @@ jobs:
         run: echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}" > $NPM_CONFIG_USERCONFIG
 
       - name: Publish to npm
-        run: yarn npm publish --access public
+        run: npm publish --access public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
