@@ -4,16 +4,18 @@ import tsconfigPaths from "vite-tsconfig-paths";
 
 import react from "@vitejs/plugin-react-swc";
 
-import { serverOnlyPlugin } from "./vite/plugins/vite-plugin-server-only/main";
-
 export default defineConfig({
-  plugins: [tsconfigPaths(), react(), dtsPlugin({ rollupTypes: true }), serverOnlyPlugin()],
+  plugins: [tsconfigPaths(), react(), dtsPlugin({ rollupTypes: true })],
   build: {
     outDir: "build",
     ssr: true,
     sourcemap: true,
     lib: {
-      entry: { "server-context": "src/main.ts", "server-context.zod": "src/zod/main.ts" },
+      entry: {
+        "server-context": "src/main.ts",
+        "server-context.zod": "src/zod/main.ts",
+        "server-context.zod-next": "src/zod-next/main.ts"
+      },
       name: "Server Context",
       formats: ["es"]
     },

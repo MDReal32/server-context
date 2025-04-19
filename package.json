@@ -16,6 +16,11 @@
       "types": "./build/server-context.zod.d.ts",
       "import": "./build/server-context.zod.js",
       "require": "./build/server-context.zod.js"
+    },
+    "./zod-next": {
+      "types": "./build/server-context.zod-next.d.ts",
+      "import": "./build/server-context.zod-next.js",
+      "require": "./build/server-context.zod-next.js"
     }
   },
   "main": "build/server-context.js",
@@ -33,18 +38,19 @@
   "dependencies": {
     "lodash.merge": "^4.6.2",
     "react": "^19.1.0",
-    "zod": "^3.24.2"
+    "zod": "^3.24.3",
+    "zod-next": "npm:zod@next"
   },
   "devDependencies": {
     "@trivago/prettier-plugin-sort-imports": "^5.2.2",
-    "@types/lodash.merge": "^4",
-    "@types/node": "^22.14.0",
-    "@types/react": "^19.1.0",
-    "@vitejs/plugin-react-swc": "^3.8.1",
+    "@types/lodash.merge": "^4.6.9",
+    "@types/node": "^22.14.1",
+    "@types/react": "^19.1.2",
+    "@vitejs/plugin-react-swc": "^3.9.0",
     "prettier": "^3.5.3",
     "prettier-plugin-packagejson": "^2.5.10",
-    "typescript": "5.8.2",
-    "vite": "^6.2.5",
+    "typescript": "5.8.3",
+    "vite": "^6.3.2",
     "vite-plugin-dts": "^4.5.3",
     "vite-tsconfig-paths": "^5.1.4"
   },

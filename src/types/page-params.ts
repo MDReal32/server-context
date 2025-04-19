@@ -1,4 +1,4 @@
 export interface PageParams<TParams, TSearchParams> {
-  params: TParams;
-  searchParams: TSearchParams;
+  params: Promise<TParams>;
+  searchParams: Promise<TSearchParams>;
 }
