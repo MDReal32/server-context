@@ -938,13 +938,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@zod/core@npm:0.8.0":
-  version: 0.8.0
-  resolution: "@zod/core@npm:0.8.0"
-  checksum: 10c0/efbedaa9e9674c60318eef177df8525220654d737fd89fa354404346fd20435c58f2705ba8c9915dd4ab33862c28148a5bb88f3e64fe2925638b8c3d70d0e305
-  languageName: node
-  linkType: hard
-
 "abbrev@npm:^3.0.0":
   version: 3.0.0
   resolution: "abbrev@npm:3.0.0"
@@ -1945,8 +1938,7 @@ __metadata:
     vite: "npm:^6.3.2"
     vite-plugin-dts: "npm:^4.5.3"
     vite-tsconfig-paths: "npm:^5.1.4"
-    zod: "npm:^3.24.3"
-    zod-next: "npm:zod@next"
+    zod: "npm:^3.25.64"
   languageName: unknown
   linkType: soft
 
@@ -2769,18 +2761,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"zod-next@npm:zod@next":
-  version: 4.0.0-beta.20250418T202744
-  resolution: "zod@npm:4.0.0-beta.20250418T202744"
-  dependencies:
-    "@zod/core": "npm:0.8.0"
-  checksum: 10c0/f3c5952057d5b9689a88e13a30d34b909c22324239d24741f7e2443dd36cd52c5ad112028078a1b8e401613bdafac4bc9b7db42d7e7fe20989e9f17c3ec607dd
-  languageName: node
-  linkType: hard
-
-"zod@npm:^3.24.3":
-  version: 3.24.3
-  resolution: "zod@npm:3.24.3"
-  checksum: 10c0/ab0369810968d0329a1a141e9418e01e5c9c2a4905cbb7cb7f5a131d6e9487596e1400e21eeff24c4a8ee28dacfa5bd6103893765c055b7a98c2006a5a4fc68d
+"zod@npm:^3.25.64":
+  version: 3.25.64
+  resolution: "zod@npm:3.25.64"
+  checksum: 10c0/00d76093a999e377e4ffd037fa7185e861c35917e8c4272f514115c206a0654995168f57fb71708b11e0a9243206d988b7f63b543404e1796402e50d346a6bd7
   languageName: node
   linkType: hard

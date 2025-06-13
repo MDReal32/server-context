@@ -1,4 +1,4 @@
-import { z } from "zod-next";
+import { z } from "zod/v4";
 
 import { Data, ServerContext } from "../../types";
 import { CreateServerContextWithZodOptions } from "./create-server-context-with-zod.options";

@@ -1,7 +1,7 @@
 import merge from "lodash.merge";
 
 import type { ReactNode } from "react";
-import { z } from "zod-next";
+import { z } from "zod/v4";
 
 import { createServerContext } from "../../base/context/create-server-context";
 import { CreateServerContextWithZodOptions, ServerContextWithZod } from "../types";
@@ -14,15 +14,15 @@ export const createServerContextWithZod = <
   options: CreateServerContextWithZodOptions<TParams, TSearchParams> = {},
   ...slots: TSlots
 ): ServerContextWithZod<TParams, TSearchParams, TSlots> => {
-  const paramsSchema = z.interface(options.params || ({} as TParams));
+  const paramsSchema = z.object(options.params || ({} as TParams));
 
-  const pageSchema = z.interface({
+  const pageSchema = z.object({
     params: paramsSchema,
     searchParams: z.object(options.searchParamsShape || ({} as TSearchParams))
   });
 
   const layoutSchema = z
-    .interface({ params: paramsSchema, children: z.custom<ReactNode>() })
+    .object({ params: paramsSchema, children: z.custom<ReactNode>() })
     .extend(
       slots.reduce(
         (acc, slot) => ({ ...acc, [slot]: z.custom<ReactNode>().optional() }),

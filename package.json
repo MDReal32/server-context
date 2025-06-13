@@ -1,6 +1,6 @@
 {
   "name": "nextjs-server-context",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "repository": {
     "type": "git",
     "url": "https://github.com/MDReal32/server-context.git"
@@ -38,8 +38,7 @@
   "dependencies": {
     "lodash.merge": "^4.6.2",
     "react": "^19.1.0",
-    "zod": "^3.24.3",
-    "zod-next": "npm:zod@next"
+    "zod": "^3.25.64"
   },
   "devDependencies": {
     "@trivago/prettier-plugin-sort-imports": "^5.2.2",
