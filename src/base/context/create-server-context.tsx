@@ -41,24 +41,27 @@ export const createServerContext = <
       TComponentProps extends TIsLayout extends true
         ? PropsWithChildren<LayoutParams<TParams, TSecondParam>>
         : PageParams<TParams, TSecondParam>
-    >(Component: FC<TComponentProps>) {
+    >(Component: FC<PropsWithChildren<TComponentProps>>) {
       const WrapperComponent: FC<TComponentProps> = props => {
-        if (typeof window === "undefined") {
-          Object.entries(props).forEach(([key, value]) => {
-            ctx.set(key, value || {});
-          });
+        const isClient = typeof window !== "undefined";
 
-          return <Component {...(props as any)} />;
-        } else {
-          const { params, searchParams } = props;
+        const { params, searchParams } = props;
 
+        if (isClient) {
           const parsedParams = use(params as Usable<TParams>);
           const parsedSearchParams = use(searchParams as Usable<TSecondParam>);
 
           ctx.set("params", parsedParams);
           ctx.set("searchParams", parsedSearchParams);
 
-          return <Component {...(props as any)} />;
+          return <Component {...({ ...props, params: parsedParams, searchParams: parsedSearchParams } as any)} />;
+        } else {
+          return Promise.all([params, searchParams]).then(([params, searchParams]) => {
+            ctx.set("params", params);
+            ctx.set("searchParams", searchParams);
+
+            return <Component {...({ ...props, params, searchParams } as any)} />;
+          });
         }
       };
 

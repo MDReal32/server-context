@@ -1,14 +1,14 @@
 import merge from "lodash.merge";
 
 import type { ReactNode } from "react";
-import { z } from "zod/v4";
+import { core, z } from "zod/v4";
 
 import { createServerContext } from "../../base/context/create-server-context";
 import { CreateServerContextWithZodOptions, ServerContextWithZod } from "../types";
 
 export const createServerContextWithZod = <
-  TParams extends z.core.$ZodLooseShape,
-  TSearchParams extends z.core.$ZodLooseShape,
+  TParams extends core.$ZodLooseShape = {},
+  TSearchParams extends core.$ZodLooseShape = {},
   TSlots extends readonly string[] = []
 >(
   options: CreateServerContextWithZodOptions<TParams, TSearchParams> = {},
@@ -43,7 +43,7 @@ export const createServerContextWithZod = <
     page: pageCtx,
     layout: layoutCtx,
     extend(newOptions, ...newSlots) {
-      return createServerContextWithZod(merge(options, newOptions), ...slots, ...newSlots);
+      return createServerContextWithZod(merge(options, newOptions) as any, ...slots, ...newSlots);
     },
     get() {
       const pageData = pageCtx.get();

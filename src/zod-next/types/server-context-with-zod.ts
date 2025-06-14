@@ -4,16 +4,16 @@ import { Data, ServerContext } from "../../types";
 import { CreateServerContextWithZodOptions } from "./create-server-context-with-zod.options";
 
 export interface ServerContextWithZod<
-  TParams extends z.core.$ZodLooseShape,
-  TSearchParams extends z.core.$ZodLooseShape,
-  TSlots extends readonly string[]
+  TParams extends z.core.$ZodLooseShape = {},
+  TSearchParams extends z.core.$ZodLooseShape = {},
+  TSlots extends readonly string[] = []
 > {
   page: ServerContext<z.infer<z.ZodObject<TParams>>, false, z.infer<z.ZodObject<TSearchParams>>>;
   layout: ServerContext<z.infer<z.ZodObject<TParams>>, true, TSlots>;
   extend<
-    TNewParams extends z.core.$ZodLooseShape,
-    TNewSearchParams extends z.core.$ZodLooseShape,
-    TNewSlots extends readonly string[]
+    TNewParams extends z.core.$ZodLooseShape = {},
+    TNewSearchParams extends z.core.$ZodLooseShape = {},
+    TNewSlots extends readonly string[] = []
   >(
     newOptions: CreateServerContextWithZodOptions<TNewParams, TNewSearchParams>,
     ...newSlots: TNewSlots
