@@ -6,10 +6,13 @@ import { LocalStorage } from "../utils/local-storage";
 export const createServerContext = <
   TParams,
   TIsLayout extends boolean,
-  TSecondParam extends readonly string[] | object
+  TSecondParam extends readonly string[] | object,
+  TWrapperComponentProps = TIsLayout extends true
+    ? PropsWithChildren<LayoutParams<TParams, TSecondParam>>
+    : PageParams<TParams, TSecondParam>
 >(
   middlewares: Middleware<Data<TParams, TIsLayout, TSecondParam>>[] = []
-): ServerContext<TParams, TIsLayout, TSecondParam> => {
+): ServerContext<TParams, TIsLayout, TSecondParam, TWrapperComponentProps> => {
   const ctx = new LocalStorage({} as Data<TParams, TIsLayout, TSecondParam>);
 
   const handleMiddleware = (data: Data<TParams, TIsLayout, TSecondParam>) => {
@@ -37,15 +40,11 @@ export const createServerContext = <
       }
       return value;
     },
-    Wrapper<
-      TComponentProps extends TIsLayout extends true
-        ? PropsWithChildren<LayoutParams<TParams, TSecondParam>>
-        : PageParams<TParams, TSecondParam>
-    >(Component: FC<PropsWithChildren<TComponentProps>>) {
-      const WrapperComponent: FC<TComponentProps> = props => {
+    Wrapper<TComponentProps>(Component: FC<TWrapperComponentProps & TComponentProps>) {
+      const WrapperComponent: FC<TWrapperComponentProps & TComponentProps> = props => {
         const isClient = typeof window !== "undefined";
 
-        const { params, searchParams } = props;
+        const { params, searchParams } = props as any;
 
         if (isClient) {
           const parsedParams = use(params as Usable<TParams>);
