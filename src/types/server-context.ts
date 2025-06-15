@@ -1,5 +1,6 @@
 import { FC, PropsWithChildren } from "react";
 
+import { Promisified } from "../base/types/promisified";
 import { Data } from "./data";
 import { LayoutParams } from "./layout-params";
 import { PageParams } from "./page-params";
@@ -20,5 +21,5 @@ export interface ServerContext<
   getOrThrow(): Data<TParams, TIsLayout, TSecondParam>;
   Wrapper<TComponentProps>(
     Component: FC<TWrapperComponentProps & TComponentProps>
-  ): FC<TWrapperComponentProps & TComponentProps>;
+  ): FC<TIsLayout extends true ? TWrapperComponentProps : Promisified<TWrapperComponentProps> & TComponentProps>;
 }

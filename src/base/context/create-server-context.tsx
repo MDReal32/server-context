@@ -1,6 +1,7 @@
 import { FC, PropsWithChildren, Usable, use } from "react";
 
 import { Data, LayoutParams, Middleware, PageParams, ServerContext } from "../../types";
+import { Promisified } from "../types/promisified";
 import { LocalStorage } from "../utils/local-storage";
 
 export const createServerContext = <
@@ -41,7 +42,9 @@ export const createServerContext = <
       return value;
     },
     Wrapper<TComponentProps>(Component: FC<TWrapperComponentProps & TComponentProps>) {
-      const WrapperComponent: FC<TWrapperComponentProps & TComponentProps> = props => {
+      const WrapperComponent: FC<
+        TIsLayout extends true ? TWrapperComponentProps : Promisified<TWrapperComponentProps> & TComponentProps
+      > = props => {
         const isClient = typeof window !== "undefined";
 
         const { params, searchParams } = props as any;
